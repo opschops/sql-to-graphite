@@ -12,16 +12,41 @@ def get_executor(dsn):
     return connection.execute
 
 def get_info():
-    parser = argparse.ArgumentParser(description='Send Klout scores to Graphite')
+    parser = argparse.ArgumentParser(description='Send SQL results to Graphite')
     parser.add_argument('--graphite-host', metavar='graphite-host', type=str, nargs=1, default=None, help='Host to send metrics to')
     parser.add_argument('--graphite-port', metavar='graphite-port', type=int, nargs=1, default=2003, help='Graphite port to send metrics to')
-    parser.add_argument('--graphite-prefix', metavar='graphite-prefix', type=str, nargs=1, default='klout', help='Prefix for metrics')
+    parser.add_argument('--graphite-prefix', metavar='graphite-prefix', type=str, nargs=1, default='db', help='Prefix for metrics')
     return parser.parse_args()
+
+def run(graphite_host, graphite_port, graphite_prefix, queries, executor):
+    data = []
+    now = time.time()
+    sock = _socket_for_host_port(graphite_host, graphite_port)
+    data = map(executor, queries)
+    for result in data:
+        for line in result:
+            metric, value = line[:2]
+            metric = '{}.{} {} {}\n'.format(graphite_prefix, metric, value, now)
+            print metric
+            sock.sendall(metric)
+    sock.close()
 
 
 def main():
     dsn = os.environ.get('S2G_DSN')
-    if key is None:
+    if dsn is None:
         print 'You must set your DSN in the environment variable `S2G_DSN`'
         sys.exit(1)
 
+    queries = sys.stdin.readlines()
+    args = get_info()
+    run(
+        args.graphite_host[0],
+        args.graphite_port,
+        args.graphite_prefix,
+        queries,
+        get_executor(dsn),
+    )
+
+if __name__ == '__main__':
+    main()
