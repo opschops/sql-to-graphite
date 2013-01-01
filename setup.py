@@ -18,6 +18,8 @@ def run_setup():
         license='BSD',
         packages=['sql_to_graphite'],
         install_requires=[
+            'sqlalchemy',
+            'mysql-python',
         ],
         test_suite='tests',
         long_description=read('README.md'),
@@ -26,6 +28,7 @@ def run_setup():
         ],
         entry_points="""
         [console_scripts]
+        sql-to-graphite=sql:main
         """,
     )
 
