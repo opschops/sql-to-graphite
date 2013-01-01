@@ -8,15 +8,15 @@ def read(fname):
 
 def run_setup():
     setup(
-        name='',
+        name='sql-to-graphite',
         version='0.0.1',
-        description='',
-        keywords = '',
-        url='',
-        author='',
-        author_email='@',
-        license='',
-        packages=[''],
+        description='A tool to send SQL results to Graphite',
+        keywords = 'SQL Graphite',
+        url='http://github.com/philipcristiano/sql-to-graphite',
+        author='Philip Cristiano',
+        author_email='philipcristiano@gmail.com',
+        license='BSD',
+        packages=['sql_to_graphite'],
         install_requires=[
         ],
         test_suite='tests',

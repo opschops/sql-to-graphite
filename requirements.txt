@@ -3,4 +3,5 @@ mock
 nose
 pea
 sphinx
+sqlalchemy
 -e git://github.com/lacostej/nosyd.git#egg=nosyd
