@@ -3,5 +3,6 @@ mock
 nose
 pea
 sphinx
+mysql-python
 sqlalchemy
 -e git://github.com/lacostej/nosyd.git#egg=nosyd
