@@ -31,6 +31,13 @@ def run(graphite_host, graphite_port, graphite_prefix, queries, executor):
             sock.sendall(metric)
     sock.close()
 
+def _socket_for_host_port(host, port):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.settimeout(10)
+    sock.connect((host, port))
+    sock.settimeout(None)
+    return sock
+
 
 def main():
     dsn = os.environ.get('S2G_DSN')
