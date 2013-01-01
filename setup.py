@@ -9,7 +9,7 @@ def read(fname):
 def run_setup():
     setup(
         name='sql-to-graphite',
-        version='0.0.2',
+        version='0.0.3',
         description='A tool to send SQL results to Graphite',
         keywords = 'SQL Graphite',
         url='http://github.com/philipcristiano/sql-to-graphite',
