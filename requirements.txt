@@ -1,4 +1,5 @@
 nose
 mysql-python
 sqlalchemy
+argparse
 -e git://github.com/lacostej/nosyd.git#egg=nosyd
