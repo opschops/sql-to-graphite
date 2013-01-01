@@ -6,6 +6,6 @@ python:
 install:
   - pip install -r requirements.txt --use-mirrors
 before_script:
-  - mysql -e 'create database sql-to-graphite;'
+  - mysql -e 'create database `sql-to-graphite`;'
 # command to run tests
 script: nosetests tests/acceptance
