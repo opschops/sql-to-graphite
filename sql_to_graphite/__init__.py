@@ -15,7 +15,7 @@ def get_info():
     parser = argparse.ArgumentParser(description='Send SQL results to Graphite')
     parser.add_argument('--graphite-host', metavar='graphite-host', type=str, nargs=1, default=None, help='Host to send metrics to')
     parser.add_argument('--graphite-port', metavar='graphite-port', type=int, nargs=1, default=2003, help='Graphite port to send metrics to')
-    parser.add_argument('--graphite-prefix', metavar='graphite-prefix', type=str, nargs=1, default='db', help='Prefix for metrics')
+    parser.add_argument('--graphite-prefix', metavar='graphite-prefix', type=str, nargs=1, default=['db'], help='Prefix for metrics')
     return parser.parse_args()
 
 def run(graphite_host, graphite_port, graphite_prefix, queries, executor):
@@ -50,7 +50,7 @@ def main():
     run(
         args.graphite_host[0],
         args.graphite_port,
-        args.graphite_prefix,
+        args.graphite_prefix[0],
         queries,
         get_executor(dsn),
     )
