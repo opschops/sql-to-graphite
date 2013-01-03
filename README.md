@@ -14,3 +14,12 @@ pip install sql-to-graphite
 export S2G_DSN="mysq://username:password@host/db"
 cat queries.sql | sql-to-graphite --graphite-host graphite.example.com --graphite-prefix db.metrics
 ```
+
+The queries piped in should be a single query per line returning at least 2
+columns. The first column returned should be the metric name (minus the
+--graphite-prefix option) and the value.
+
+```
+SELECT "metric", 1+1;
+SELECT "now", NOW();
+```
