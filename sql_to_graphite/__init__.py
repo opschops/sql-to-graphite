@@ -7,7 +7,7 @@ import time
 import sqlalchemy
 
 def get_executor(dsn):
-    engine = sqlalchemy.create_engine(dsn)
+    engine = sqlalchemy.create_engine(dsn, isolation_level='READ-UNCOMMITTED')
     connection = engine.connect()
     return connection.execute
 
