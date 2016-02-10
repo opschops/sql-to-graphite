@@ -26,7 +26,7 @@ def run(graphite_host, graphite_port, graphite_prefix, queries, executor):
     for result in data:
         for line in result:
             metric, value = line[:2]
-            metric = '{}.{} {} {}\n'.format(graphite_prefix, metric, value, now)
+            metric = '{0}.{1} {2} {3}\n'.format(graphite_prefix, metric, value, now)
             print metric,
             sock.sendall(metric)
     sock.close()
