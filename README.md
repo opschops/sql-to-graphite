@@ -1,4 +1,4 @@
-# SQL-to-Graphite
+# SQL-to-Graphite [![Build Status](https://travis-ci.org/opschops/sql-to-graphite.svg?branch=master)](https://travis-ci.org/opschops/sql-to-graphite)
 
 A tool to easily send the results of SQL queries to Graphite!
 
