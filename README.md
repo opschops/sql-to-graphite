@@ -11,7 +11,7 @@ pip install sql-to-graphite
 ## Running
 
 ```
-export S2G_DSN="mysq://username:password@host/db"
+export S2G_DSN="mysql://username:password@host/db"
 cat queries.sql | sql-to-graphite --graphite-host graphite.example.com --graphite-prefix db.metrics
 ```
 
